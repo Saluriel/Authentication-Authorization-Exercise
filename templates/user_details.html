@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{%block title%}{{user.username}} Details{%endblock%}
+
+{% block content %}
+{% for msg in get_flashed_messages() %}
+<div>{{ msg }}</div>
+{% endfor %}
+
+Username: {{user.username}}<br>
+email: {{user.email}}<br>
+first name: {{user.first_name}}<br>
+last name: {{user.last_name}}<br><br>
+<div>
+    <p>
+        {%for feedback in fb%}
+        {{feedback.title}} - {{feedback.content}} <a href="/feedback/{{feedback.id}}/update">Edit</a> <a
+            href="/feedback/{{feedback.id}}/delete">Delete</a> {%endfor%}</p>
+</div><br><br>
+
+<a href="/users/{{user.username}}/feedback/add">Add Feedback</a> <a href="/logout">Log out</a><br><br><a
+    href="/users/{{user.username}}/delete">Delete User</a>
+{% endblock %}
